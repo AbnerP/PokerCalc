@@ -14,6 +14,10 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     JTable stats = new JTable(14, 14);
     JPanel table = new JPanel();
     JButton sim = new JButton("SIMULATE");
+    public static int nPlayers;
+    public static boolean deal=false;
+    public static ArrayList<Card> execps = new ArrayList<>();
+    public static Card [] deckUsed = new Card[52];
 
     //Player Labels
     JLabel you = new JLabel("YOU");
@@ -26,23 +30,60 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     JLabel P8 = new JLabel("P8");
     JLabel P9 = new JLabel("P9");
 
+    //Hands
+    public static Hand hOne = new Hand();
+    public static Hand hTwo = new Hand();
+    public static Hand hThree = new Hand();
+    public static Hand hFour = new Hand();
+    public static Hand hFive = new Hand();
+    public static Hand hSix = new Hand();
+    public static Hand hSeven = new Hand();
+    public static Hand hEight = new Hand();
+    public static Hand hNine = new Hand();
 
     public static void main(String[] args){
         new UserInter().setVisible(true);
-        Card [] deckUsed = new Card[52];
         Deck.orderedDeck(deckUsed);
-        ArrayList<Card> execps = new ArrayList<>();
-        int nPlayers = 2;
-
-        Hand one = new Hand(deckUsed[0],deckUsed[1]);
-        execps.add(one.getCard1());
-        execps.add(one.getCard2());
-        Hand two = rC(execps,deckUsed);
-        System.out.println(one + "\n\t\tvs\n"+ two);
-
-
     }
 
+    public static void pChange(){
+        if(nPlayers >= 2) {
+            hOne = new Hand(deckUsed[0], deckUsed[1]);
+            execps.add(hOne.getCard1());
+            execps.add(hOne.getCard2());
+            hTwo = rC(execps,deckUsed);
+            System.out.println(hOne + "\n\t\tvs\n"+ hTwo);
+        }
+        if(nPlayers >= 3) {
+            hThree = rC(execps,deckUsed);
+            System.out.println("\n\t\tvs\n"+hThree);
+        }
+        if(nPlayers >= 4) {
+            hFour = rC(execps,deckUsed);
+            System.out.println("\n\t\tvs\n"+hFour);
+        }
+        if(nPlayers >= 5) {
+            hFive = rC(execps,deckUsed);
+            System.out.println("\n\t\tvs\n"+hFive);
+        }
+        if(nPlayers >= 6) {
+            hSix = rC(execps,deckUsed);
+            System.out.println("\n\t\tvs\n"+hSix);
+        }
+        if(nPlayers >= 7) {
+            hSeven = rC(execps,deckUsed);
+            System.out.println("\n\t\tvs\n"+hSeven);
+        }
+        if(nPlayers >= 8) {
+            hEight = rC(execps,deckUsed);
+            System.out.println("\n\t\tvs\n"+hEight);
+        }
+        if(nPlayers >= 9) {
+            hNine = rC(execps,deckUsed);
+            System.out.println("\n\t\tvs\n"+hNine);
+        }
+        //deal=false;
+    }
     public UserInter() {
         setTitle("Poker Simulator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -113,18 +154,23 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             add(table, BorderLayout.CENTER);
         }
 
+        //Simulate Button
+        {
+            add(sim,BorderLayout.SOUTH);
+            sim.addActionListener(this);
+        }
 
-        add(sim,BorderLayout.SOUTH);
-        sim.addActionListener(this);
+        //Deleted Things
+        {
+            //stats.setGridColor(Color.BLACK);
+            //stats.setShowGrid(true);
+            //stats.setShowHorizontalLines(true);
+            //stats.setShowVerticalLines(true);
+            //add(stats,BorderLayout.CENTER);
+            //JLabel suited = new JLabel("Suited");
+            //add(suited,BorderLayout.WEST);
+        }
 
-        //stats.setGridColor(Color.BLACK);
-        //stats.setShowGrid(true);
-        //stats.setShowHorizontalLines(true);
-        //stats.setShowVerticalLines(true);
-        //add(stats,BorderLayout.CENTER);
-
-        //JLabel suited = new JLabel("Suited");
-        //add(suited,BorderLayout.WEST);
     }
     public static Hand rC(ArrayList<Card> exceps,Card [] deck){
         boolean cond = true;
@@ -156,15 +202,19 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             sim.setText("SIMULATING");
             sim.setText("DONE");
         }
+        if(ob == sim)
+            pChange();
     }
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         Object s = e.getItem();
         Object r = e.getSource();
+
         if(r == players){
-            System.out.println( s+" Players");
-            
+            //System.out.println( s+" Players");
             if(s.equals(2)){
+                nPlayers=2;
                 you.setVisible(true);
                 P2.setVisible(true);
                 P3.setVisible(false);
@@ -176,6 +226,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
                 P9.setVisible(false);
             }
             else if(s.equals(3)){
+                nPlayers=3;
                 you.setVisible(true);
                 P2.setVisible(true);
                 P3.setVisible(true);
@@ -187,6 +238,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
                 P9.setVisible(false);
             }
             else if(s.equals(4)){
+                nPlayers=4;
                 you.setVisible(true);
                 P2.setVisible(true);
                 P3.setVisible(true);
@@ -198,6 +250,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
                 P9.setVisible(false);
             }
             else if(s.equals(5)){
+                nPlayers=5;
                 you.setVisible(true);
                 P2.setVisible(true);
                 P3.setVisible(true);
@@ -209,6 +262,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
                 P9.setVisible(false);
             }
             else if(s.equals(6)){
+                nPlayers=6;
                 you.setVisible(true);
                 P2.setVisible(true);
                 P3.setVisible(true);
@@ -220,6 +274,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
                 P9.setVisible(false);
             }
             else if(s.equals(7)){
+                nPlayers=7;
                 you.setVisible(true);
                 P2.setVisible(true);
                 P3.setVisible(true);
@@ -231,6 +286,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
                 P9.setVisible(false);
             }
             else if(s.equals(8)){
+                nPlayers=8;
                 you.setVisible(true);
                 P2.setVisible(true);
                 P3.setVisible(true);
@@ -242,6 +298,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
                 P9.setVisible(false);
             }
             else if(s.equals(9)){
+                nPlayers=9;
                 you.setVisible(true);
                 P2.setVisible(true);
                 P3.setVisible(true);
@@ -252,10 +309,11 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
                 P8.setVisible(true);
                 P9.setVisible(true);
             }
-
         }
+
         if(r == nhands)
             System.out.println("Playing "+s+" hands");
+
     }
     public static void printCards(Card[] card){
         System.out.println("");
