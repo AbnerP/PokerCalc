@@ -23,7 +23,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
               card[0]=deckUsed[i];
               card[1]=deckUsed[j];
               hands.add(index,(new Hand(card[0],card[1])));
-              index++;
+              index--;
           }
         }
 
