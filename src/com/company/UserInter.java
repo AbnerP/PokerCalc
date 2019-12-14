@@ -56,31 +56,31 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
         }
         if(nPlayers >= 3) {
             hThree = rC(execps,deckUsed);
-            System.out.println("\n\t\tvs\n"+hThree);
+            System.out.println("\t\tvs\n"+hThree);
         }
         if(nPlayers >= 4) {
             hFour = rC(execps,deckUsed);
-            System.out.println("\n\t\tvs\n"+hFour);
+            System.out.println("\t\tvs\n"+hFour);
         }
         if(nPlayers >= 5) {
             hFive = rC(execps,deckUsed);
-            System.out.println("\n\t\tvs\n"+hFive);
+            System.out.println("\t\tvs\n"+hFive);
         }
         if(nPlayers >= 6) {
             hSix = rC(execps,deckUsed);
-            System.out.println("\n\t\tvs\n"+hSix);
+            System.out.println("\t\tvs\n"+hSix);
         }
         if(nPlayers >= 7) {
             hSeven = rC(execps,deckUsed);
-            System.out.println("\n\t\tvs\n"+hSeven);
+            System.out.println("\t\tvs\n"+hSeven);
         }
         if(nPlayers >= 8) {
             hEight = rC(execps,deckUsed);
-            System.out.println("\n\t\tvs\n"+hEight);
+            System.out.println("\t\tvs\n"+hEight);
         }
         if(nPlayers >= 9) {
             hNine = rC(execps,deckUsed);
-            System.out.println("\n\t\tvs\n"+hNine);
+            System.out.println("\t\tvs\n"+hNine);
         }
         //deal=false;
     }
