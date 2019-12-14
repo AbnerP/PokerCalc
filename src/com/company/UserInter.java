@@ -47,7 +47,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     }
 
     public static void pChange(){
-        if(nPlayers >= 3) {
+        if(nPlayers >= 2) {
             hOne = new Hand(deckUsed[0], deckUsed[1]);
             execps.add(hOne.getCard1());
             execps.add(hOne.getCard2());
