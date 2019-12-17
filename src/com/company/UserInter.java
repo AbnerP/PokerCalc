@@ -82,6 +82,9 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             hNine = rC(execps,deckUsed);
             System.out.println("\t\tvs\n"+hNine);
         }
+        Card[] tableCards = rCT(execps,deckUsed);
+        for(Card c: tableCards)
+            System.out.println(c);
         //deal=false;
     }
     public UserInter() {
@@ -193,6 +196,31 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
         }
         return new Hand(temp[0],temp[1]);
     }
+
+    public static Card[] rCT(ArrayList<Card> exceps,Card [] deck){
+        boolean cond = true;
+        int tempind;
+        Card [] tableCards = new Card[5];
+        for(int i = 0;i<5;i++){
+            while(cond) {
+                tempind=(int) (Math.random() * 51);
+                if (!(exceps.contains(deck[tempind]))) {
+                    exceps.add(deck[tempind]);
+                    tableCards[i] = deck[tempind];
+                    cond = false;
+                }
+                else{
+                    cond = true;
+                }
+
+            }
+            cond = true;
+        }
+        return tableCards;
+    }
+
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
