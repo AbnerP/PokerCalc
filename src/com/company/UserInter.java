@@ -47,6 +47,8 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     public static JLabel card4 = new JLabel("card");
     public static JLabel card5 = new JLabel("card");
 
+    public static int loopMult;
+
     //Cards
     public static Card[] tableCards = new Card[5];
 
@@ -56,51 +58,53 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     }
 
     public static void pChange(){
-        if(nPlayers >= 2) {
-            hOne = new Hand(deckUsed[0], deckUsed[1]);
-            execps.add(hOne.getCard1());
-            execps.add(hOne.getCard2());
-            hTwo = rC(execps,deckUsed);
-            System.out.println(hOne + "\n\t\tvs\n"+ hTwo);
-        }
-        if(nPlayers >= 3) {
-            hThree = rC(execps,deckUsed);
-            System.out.println("\t\tvs\n"+hThree);
-        }
-        if(nPlayers >= 4) {
-            hFour = rC(execps,deckUsed);
-            System.out.println("\t\tvs\n"+hFour);
-        }
-        if(nPlayers >= 5) {
-            hFive = rC(execps,deckUsed);
-            System.out.println("\t\tvs\n"+hFive);
-        }
-        if(nPlayers >= 6) {
-            hSix = rC(execps,deckUsed);
-            System.out.println("\t\tvs\n"+hSix);
-        }
-        if(nPlayers >= 7) {
-            hSeven = rC(execps,deckUsed);
-            System.out.println("\t\tvs\n"+hSeven);
-        }
-        if(nPlayers >= 8) {
-            hEight = rC(execps,deckUsed);
-            System.out.println("\t\tvs\n"+hEight);
-        }
-        if(nPlayers >= 9) {
-            hNine = rC(execps,deckUsed);
-            System.out.println("\t\tvs\n"+hNine);
-        }
-        tableCards = rCT(execps,deckUsed);
+        for(int i=1;i<=loopMult;i++) {
+            if (nPlayers >= 2) {
+                hOne = new Hand(deckUsed[0], deckUsed[1]);
+                execps.add(hOne.getCard1());
+                execps.add(hOne.getCard2());
+                hTwo = rC(execps, deckUsed);
+                //System.out.println(hOne + "\n\t\tvs\n"+ hTwo);
+            }
+            if (nPlayers >= 3) {
+                hThree = rC(execps, deckUsed);
+                //System.out.println("\t\tvs\n"+hThree);
+            }
+            if (nPlayers >= 4) {
+                hFour = rC(execps, deckUsed);
+                //System.out.println("\t\tvs\n"+hFour);
+            }
+            if (nPlayers >= 5) {
+                hFive = rC(execps, deckUsed);
+                //System.out.println("\t\tvs\n"+hFive);
+            }
+            if (nPlayers >= 6) {
+                hSix = rC(execps, deckUsed);
+                //System.out.println("\t\tvs\n"+hSix);
+            }
+            if (nPlayers >= 7) {
+                hSeven = rC(execps, deckUsed);
+                //System.out.println("\t\tvs\n"+hSeven);
+            }
+            if (nPlayers >= 8) {
+                hEight = rC(execps, deckUsed);
+                //System.out.println("\t\tvs\n"+hEight);
+            }
+            if (nPlayers >= 9) {
+                hNine = rC(execps, deckUsed);
+                //System.out.println("\t\tvs\n"+hNine);
+            }
+            tableCards = rCT(execps, deckUsed);
 
-        for(Card c: tableCards)
-            System.out.println(c);
+            for (Card c : tableCards)
+                //System.out.println(c);
 
-        card1.setText(tableCards[0].toString());
-        card2.setText(tableCards[1].toString());
-        card3.setText(tableCards[2].toString());
-        card4.setText(tableCards[3].toString());
-        card5.setText(tableCards[4].toString());
+                card1.setText(tableCards[0].toString());
+            card2.setText(tableCards[1].toString());
+            card3.setText(tableCards[2].toString());
+            card4.setText(tableCards[3].toString());
+            card5.setText(tableCards[4].toString());
+        }
         //deal=false;
     }
     public UserInter() {
@@ -129,6 +133,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             top.add(numhands);
             nhands.addItemListener(this);
             nhands.setSize(20, 20);
+            nhands.addItem(2);
             nhands.addItem(10);
             nhands.addItem(50);
             nhands.addItem(100);
@@ -355,8 +360,34 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             }
         }
 
-        if(r == nhands)
-            System.out.println("Playing "+s+" hands");
+        if(r == nhands) {
+            System.out.println("Playing " + s + " hands");
+            if(s.equals(2)){
+                loopMult = 2;
+            }
+            else if(s.equals(10)){
+                loopMult = 10;
+            }
+            else if(s.equals(50)){
+                loopMult = 50;
+            }
+            else if(s.equals(100)){
+                loopMult = 100;
+            }
+            else if(s.equals(150)){
+                loopMult = 150;
+            }
+            else if(s.equals(250)){
+                loopMult = 250;
+            }
+            else if(s.equals(500)){
+                loopMult = 500;
+            }
+            else if(s.equals(1000)){
+                loopMult = 1000;
+            }
+
+        }
 
     }
     public static void printCards(Card[] card){
