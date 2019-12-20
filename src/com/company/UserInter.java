@@ -41,6 +41,15 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     public static Hand hEight = new Hand();
     public static Hand hNine = new Hand();
 
+    public static JLabel card1 = new JLabel("card");
+    public static JLabel card2 = new JLabel("card");
+    public static JLabel card3 = new JLabel("card");
+    public static JLabel card4 = new JLabel("card");
+    public static JLabel card5 = new JLabel("card");
+
+    //Cards
+    public static Card[] tableCards = new Card[5];
+
     public static void main(String[] args){
         new UserInter().setVisible(true);
         Deck.orderedDeck(deckUsed);
@@ -82,9 +91,16 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             hNine = rC(execps,deckUsed);
             System.out.println("\t\tvs\n"+hNine);
         }
-        Card[] tableCards = rCT(execps,deckUsed);
+        tableCards = rCT(execps,deckUsed);
+
         for(Card c: tableCards)
             System.out.println(c);
+
+        card1.setText(tableCards[0].toString());
+        card2.setText(tableCards[1].toString());
+        card3.setText(tableCards[2].toString());
+        card4.setText(tableCards[3].toString());
+        card5.setText(tableCards[4].toString());
         //deal=false;
     }
     public UserInter() {
@@ -132,28 +148,28 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             JPanel c2 = new JPanel();
             c2.setLayout(new GridLayout(3, 0));
             c2.add(P2);
-            c2.add(new JLabel("card"));
+            c2.add(card1);
             c2.add(P3);
             table.add(c2);
             JPanel c3 = new JPanel();
             c3.setLayout(new GridLayout(3, 0));
             c3.add(P4);
-            c3.add(new JLabel("card"));
+            c3.add(card2);
             c3.add(P5);
             table.add(c3);
             JPanel c4 = new JPanel();
             c4.setLayout(new GridLayout(3, 0));
             c4.add(P6);
-            c4.add(new JLabel("card"));
+            c4.add(card3);
             c4.add(P7);
             table.add(c4);
             JPanel c5 = new JPanel();
             c5.setLayout(new GridLayout(3, 0));
             c5.add(P8);
-            c5.add(new JLabel("card"));
+            c5.add(card4);
             c5.add(P9);
             table.add(c5);
-            table.add(new JLabel("card"));
+            table.add(card5);
             add(table, BorderLayout.CENTER);
         }
 

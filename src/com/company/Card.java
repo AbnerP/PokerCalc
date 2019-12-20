@@ -4,7 +4,7 @@ public class Card {
 
     //Arrays for String Version of Cards
     private String[] rankArray = {"2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"};
-    private String[] suitArray = {"Spades","Diamonds","Clubs","Hearts"};
+    private String[] suitArray = {"S","D","C","H"};
     //Index input for the String Array above and also used for calculations
     private int rank;
     private int suit;
@@ -14,7 +14,7 @@ public class Card {
     public Card(int rank, int suit){
        this.rank=rank;
        this.suit=suit;
-       this.card  = rankArray[this.rank]+" of "+suitArray[this.suit];
+       this.card  = rankArray[this.rank]+"/"+suitArray[this.suit];
     }
 
     //Getters
