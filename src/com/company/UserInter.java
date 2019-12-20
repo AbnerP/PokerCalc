@@ -18,6 +18,8 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     public static boolean deal=false;
     public static ArrayList<Card> execps = new ArrayList<>();
     public static Card [] deckUsed = new Card[52];
+    public static double winCount;
+    public static double percentage;
 
     //Player Labels
     JLabel you = new JLabel("YOU");
@@ -40,13 +42,13 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     public static Hand hSeven = new Hand();
     public static Hand hEight = new Hand();
     public static Hand hNine = new Hand();
+    public static JLabel per = new JLabel("0");
 
     public static JLabel card1 = new JLabel("card");
     public static JLabel card2 = new JLabel("card");
     public static JLabel card3 = new JLabel("card");
     public static JLabel card4 = new JLabel("card");
     public static JLabel card5 = new JLabel("card");
-
     public static int loopMult;
 
     //Cards
@@ -58,54 +60,191 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     }
 
     public static void pChange(){
+        double h1V;
+        double h2V;
+        double h3V;
+        double h4V;
+        double h5V;
+        double h6V;
+        double h7V;
+        double h8V;
+        double h9V;
+
         for(int i=1;i<=loopMult;i++) {
-            if (nPlayers >= 2) {
-                hOne = new Hand(deckUsed[0], deckUsed[1]);
-                execps.add(hOne.getCard1());
-                execps.add(hOne.getCard2());
-                hTwo = rC(execps, deckUsed);
-                //System.out.println(hOne + "\n\t\tvs\n"+ hTwo);
-            }
-            if (nPlayers >= 3) {
-                hThree = rC(execps, deckUsed);
-                //System.out.println("\t\tvs\n"+hThree);
-            }
-            if (nPlayers >= 4) {
-                hFour = rC(execps, deckUsed);
-                //System.out.println("\t\tvs\n"+hFour);
-            }
-            if (nPlayers >= 5) {
-                hFive = rC(execps, deckUsed);
-                //System.out.println("\t\tvs\n"+hFive);
-            }
-            if (nPlayers >= 6) {
-                hSix = rC(execps, deckUsed);
-                //System.out.println("\t\tvs\n"+hSix);
-            }
-            if (nPlayers >= 7) {
-                hSeven = rC(execps, deckUsed);
-                //System.out.println("\t\tvs\n"+hSeven);
-            }
-            if (nPlayers >= 8) {
-                hEight = rC(execps, deckUsed);
-                //System.out.println("\t\tvs\n"+hEight);
-            }
-            if (nPlayers >= 9) {
-                hNine = rC(execps, deckUsed);
-                //System.out.println("\t\tvs\n"+hNine);
-            }
             tableCards = rCT(execps, deckUsed);
 
-            for (Card c : tableCards)
+            //for (Card c : tableCards)
                 //System.out.println(c);
-
-                card1.setText(tableCards[0].toString());
+            card1.setText(tableCards[0].toString());
             card2.setText(tableCards[1].toString());
             card3.setText(tableCards[2].toString());
             card4.setText(tableCards[3].toString());
             card5.setText(tableCards[4].toString());
+
+            if (nPlayers >= 2) {
+                hOne = new Hand(deckUsed[0], deckUsed[1]);
+                execps.add(hOne.getCard1());
+                execps.add(hOne.getCard2());
+                h1V = hOne.handValueCalc(tableCards);
+                hTwo = rC(execps, deckUsed);
+                h2V = hTwo.handValueCalc(tableCards);
+                //ystem.out.println(hOne + "\n\t\tvs\n"+ hTwo);
+                if (nPlayers >= 3) {
+                    hThree = rC(execps, deckUsed);
+                    h3V = hThree.handValueCalc(tableCards);
+                    //System.out.println("\t\tvs\n"+hThree);
+                    if (nPlayers >= 4) {
+                        hFour = rC(execps, deckUsed);
+                        h4V = hFour.handValueCalc(tableCards);
+                        //System.out.println("\t\tvs\n"+hFour);
+                        if (nPlayers >= 5) {
+                            hFive = rC(execps, deckUsed);
+                            h5V = hFive.handValueCalc(tableCards);
+                            //System.out.println("\t\tvs\n"+hFive);
+                            if (nPlayers >= 6) {
+                                hSix = rC(execps, deckUsed);
+                                h6V = hSix.handValueCalc(tableCards);
+                                //System.out.println("\t\tvs\n"+hSix);
+                                if (nPlayers >= 7) {
+                                    hSeven = rC(execps, deckUsed);
+                                    h7V = hSeven.handValueCalc(tableCards);
+                                    //System.out.println("\t\tvs\n"+hSeven);
+                                    if (nPlayers >= 8) {
+                                        hEight = rC(execps, deckUsed);
+                                        h8V = hEight.handValueCalc(tableCards);
+                                        //System.out.println("\t\tvs\n"+hEight);
+                                        if (nPlayers >= 9) {
+                                            hNine = rC(execps, deckUsed);
+                                            h9V = hNine.handValueCalc(tableCards);
+                                            //System.out.println("\t\tvs\n"+hNine);
+                                            if(
+                                                    (h1V>=h2V)
+                                                            &&
+                                                            (h1V>=h3V)
+                                                            &&
+                                                            (h1V>=h4V)
+                                                            &&
+                                                            (h1V>=h5V)
+                                                            &&
+                                                            (h1V>=h6V)
+                                                            &&
+                                                            (h1V>=h7V)
+                                                            &&
+                                                            (h1V>=h8V)
+                                                            &&
+                                                            (h1V>=h9V)
+
+                                            ){
+                                                winCount++;
+                                            }
+                                        }
+                                        else if(
+                                                (h1V>=h2V)
+                                                        &&
+                                                        (h1V>=h3V)
+                                                        &&
+                                                        (h1V>=h4V)
+                                                        &&
+                                                        (h1V>=h5V)
+                                                        &&
+                                                        (h1V>=h6V)
+                                                        &&
+                                                        (h1V>=h7V)
+                                                        &&
+                                                        (h1V>=h8V)
+
+
+                                        ){
+                                            winCount++;
+                                        }
+                                    }
+                                    else if(
+                                            (h1V>=h2V)
+                                                    &&
+                                                    (h1V>=h3V)
+                                                    &&
+                                                    (h1V>=h4V)
+                                                    &&
+                                                    (h1V>=h5V)
+                                                    &&
+                                                    (h1V>=h6V)
+                                                    &&
+                                                    (h1V>=h7V)
+
+
+
+                                    ){
+                                        winCount++;
+                                    }
+                                }
+                                else if(
+                                        (h1V>=h2V)
+                                                &&
+                                                (h1V>=h3V)
+                                                &&
+                                                (h1V>=h4V)
+                                                &&
+                                                (h1V>=h5V)
+                                                &&
+                                                (h1V>=h6V)
+
+
+                                ){
+                                    winCount++;
+                                }
+                            }
+                            else if(
+                                    (h1V>=h2V)
+                                            &&
+                                            (h1V>=h3V)
+                                            &&
+                                            (h1V>=h4V)
+                                            &&
+                                            (h1V>=h5V)
+
+
+                            ){
+                                winCount++;
+                            }
+                        }
+                        else if(
+                                (h1V>=h2V)
+                                        &&
+                                        (h1V>=h3V)
+                                        &&
+                                        (h1V>=h4V)
+
+
+                        ){
+                            winCount++;
+                        }
+                    }
+                    else if(
+                            (h1V>=h2V)
+                                    &&
+                                    (h1V>=h3V)
+
+
+                    ){
+                        winCount++;
+                    }
+                }
+                else if(
+                        (h1V>=h2V)
+
+
+                ){
+                    winCount++;
+                }
+            }
+            execps.clear();
         }
-        //deal=false;
+        System.out.println(winCount);
+        percentage = (winCount/loopMult)*100;
+        System.out.println(percentage+"%");
+        per.setText(String.valueOf(percentage));
+        per.getColorModel();
+        winCount=0;
     }
     public UserInter() {
         setTitle("Poker Simulator");
@@ -141,6 +280,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             nhands.addItem(250);
             nhands.addItem(500);
             nhands.addItem(1000);
+            nhands.addItem(999999);
             top.add(nhands);
             add(top, BorderLayout.NORTH);
         }
@@ -148,7 +288,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
         //Player Card Arrangement
         {
             table.setLayout(new GridLayout(0, 8));
-            table.add(new JLabel(""));
+            table.add(per);
             table.add(you);
             JPanel c2 = new JPanel();
             c2.setLayout(new GridLayout(3, 0));
@@ -217,7 +357,6 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
         }
         return new Hand(temp[0],temp[1]);
     }
-
     public static Card[] rCT(ArrayList<Card> exceps,Card [] deck){
         boolean cond = true;
         int tempind;
@@ -239,22 +378,17 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
         }
         return tableCards;
     }
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         Object ob = e.getSource();
 
         if(cmd.equals("SIMULATE")){
-            sim.setText("SIMULATING");
-            sim.setText("DONE");
-        }
-        if(ob == sim)
             pChange();
-    }
+            //sim.setText("SIMULATE");
+        }
 
+    }
     @Override
     public void itemStateChanged(ItemEvent e) {
         Object s = e.getItem();
@@ -385,6 +519,9 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             }
             else if(s.equals(1000)){
                 loopMult = 1000;
+            }
+            else if(s.equals(999999)){
+                loopMult = 999999;
             }
 
         }
