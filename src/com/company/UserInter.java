@@ -534,18 +534,3 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
         }
     }
 }
-//All Possible Hands
-        /*
-        ArrayList<Hand> hands = new ArrayList<>();
-        int index = 0;
-        for(int i = 0;i<deckUsed.length;i++){
-          for(int j = (i+1);j<deckUsed.length;j++){
-              card[0]=deckUsed[i];
-              card[1]=deckUsed[j];
-              hands.add(index,(new Hand(card[0],card[1])));
-              index++;
-          }
-        }
-        for(Hand h:hands)
-           System.out.println(h);
-        */
