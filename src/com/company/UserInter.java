@@ -57,6 +57,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
     public static void main(String[] args){
         new UserInter().setVisible(true);
         Deck.orderedDeck(deckUsed);
+        printCards(deckUsed);
     }
 
     public static void pChange(){
@@ -82,7 +83,7 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
             card5.setText(tableCards[4].toString());
 
             if (nPlayers >= 2) {
-                hOne = new Hand(deckUsed[0], deckUsed[1]);
+                hOne = new Hand(deckUsed[0], deckUsed[4]);
                 execps.add(hOne.getCard1());
                 execps.add(hOne.getCard2());
                 h1V = hOne.handValueCalc(tableCards);
@@ -288,7 +289,12 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
         //Player Card Arrangement
         {
             table.setLayout(new GridLayout(0, 8));
-            table.add(per);
+            JPanel percentage = new JPanel();
+            percentage.setLayout(new GridLayout(0,2));
+            JLabel perc = new JLabel("%");
+            percentage.add(per);
+            percentage.add(perc);
+            table.add(percentage);
             table.add(you);
             JPanel c2 = new JPanel();
             c2.setLayout(new GridLayout(3, 0));
@@ -528,9 +534,9 @@ public class UserInter extends JFrame implements ActionListener, ItemListener {
 
     }
     public static void printCards(Card[] card){
-        System.out.println("");
-        for (Card value : card) {
-            System.out.println(value);
+        System.out.println("Index\tCard");
+        for (int i = 0 ; i<card.length;i++) {
+            System.out.println(" "+i+"\t\t"+card[i]);
         }
     }
 }
